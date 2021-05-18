@@ -1,11 +1,10 @@
-
 import { useState } from 'react';
 import { FiEdit3, FiTrash } from 'react-icons/fi';
 
 import { Container } from './styles';
 import api from '../../services/api';
 
-interface IFood {
+interface IFood { // Tipando o código com interface, pegando todos os dados da API
   id:number;
   name:string;
   description:string;
@@ -14,27 +13,28 @@ interface IFood {
   image:string;
 }
 
-interface FoodProps {
-  food: IFood;
+interface FoodProps {// Aqui tipamos FoodProps com interface para passar como parametros
+  food: IFood; // Dentro da função Food, que recebe a tipagem de FoodProps
   handleEditFood: (food:IFood) => void
   handleDelete: (id:number) => void
 }
 
 export default function Food({food, handleEditFood, handleDelete}: FoodProps) {
   const { available } = food;
-  const [isAvailable, setIsAvailable] = useState(available)
+  const [isAvailable, setIsAvailable] = useState(available) // Aqui setamos o estamos ao inves de
+  // this.state, com TSX usamos useState para isso, criando duas variaveis
 
   const toggleAvailable = async () => {
     await api.put(`/foods/${food.id}`, {
       ...food,
-      available: !isAvailable,
-    });
+      available: !isAvailable, // O operador logico (!) NÃO (Logical NOT)
+    }); // Ele é um valor de negação, que inverte o valor original passado
 
-    setIsAvailable(!isAvailable);
+    setIsAvailable(!isAvailable); // Define para NÃO
   }
 
   const setEditingFood = () => {
-    handleEditFood(food);
+    handleEditFood(food); // Ainda tenho que saber o que faz
   }
 
   return (
@@ -87,5 +87,4 @@ export default function Food({food, handleEditFood, handleDelete}: FoodProps) {
       </section>
     </Container>
   );
-
 }

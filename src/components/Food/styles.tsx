@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
-interface ContainerProps {
-  available: boolean;
+interface ContainerProps { // Aqui tipa available como booleano para passar no Container +
+  available: boolean; // A sua tipagem
 }
 
 export const Container = styled.div<ContainerProps>`
