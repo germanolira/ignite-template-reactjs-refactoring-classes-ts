@@ -3,9 +3,8 @@ import { Container } from './styles';
 import Logo from '../../assets/logo.svg';
 
 interface handleOpenModal { // Basicamente tipo o openModal vindo de onClick
-  openModal: any; // Ainda não olhei o que onClick passa, tentei passar como booleano
-} // Mas não funcionou, então tipei como any porque não tem perigo de ele enviar outra coisa
-// A não ser o que ele foi programado para ser
+  openModal: () => void; // Ao ínves de retornar any, deve retornar void no lugar
+}
 
 export default function Header({openModal}: handleOpenModal) {
   return (
